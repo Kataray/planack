@@ -1,0 +1,18 @@
+[
+    {
+        "group": "Finance",
+        "tasks": [
+            { "name": "Submit tax return", "done": true },
+            { "name": "Submit tax return", "done": true },
+            { "name": "Update budget", "done": false }
+
+        ]
+    },
+    {
+        "group": "Productivity",
+        "tasks": [
+            { "name": "Read 10 pages", "done": true },
+            { "name": "Clear inbox", "done": false }
+        ]
+    }
+]

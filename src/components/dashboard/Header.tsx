@@ -3,6 +3,7 @@ import Card from '@/components/ui/GenericCard.tsx';
 import { CheckCircleIcon } from "lucide-react";
 import { MapPinIcon } from "lucide-react";
 import { CalendarIcon, UsersIcon } from "lucide-react";
+import TasksTable from '@/components/ui/TaskList.tsx'
 
 function Header() {
     return (
@@ -41,6 +42,10 @@ function Header() {
                         subtitle="401 Sunset, Windsor, ON"
                         icon={<MapPinIcon className="text-white h-8 w-8" />}
                     />
+                </div>
+
+                <div>
+                    <TasksTable />
                 </div>
 
             </section>
