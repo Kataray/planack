@@ -6,6 +6,8 @@ import { CalendarIcon, UsersIcon } from "lucide-react";
 import TasksTable from '@/components/ui/TaskList.tsx'
 import CalCard from '@/components/ui/CalCard.tsx'
 import UserCard from '@/components/ui/UserCard.tsx'
+import ResourceIconCard from '@/components/ui/SmallerCards.tsx';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.tsx";
 
 function Header() {
     return (
@@ -18,6 +20,14 @@ function Header() {
                 <h2 className="font-cal text-[2.5vh] flex justify-start ml-10 -mt-2 text-[#FFFFFF]">
                     Every hack on track
                 </h2>
+
+                <div className="absolute right-15 top-13 scale-180">
+                    <Avatar>
+                        <AvatarImage src="https://github.com/Kataray.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+
+                </div>
 
                 <div className="flex gap-6 ml-10 mt-8 mr-10">
                     <Card
@@ -54,6 +64,11 @@ function Header() {
                 <div className="flex ml-10 -mt-23">
                     <UserCard />
                 </div>
+
+                <div className="flex ml-10 -mt-23">
+                    <ResourceIconCard />
+                </div>
+
 
             </section>
         </div>
