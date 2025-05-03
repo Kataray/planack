@@ -5,6 +5,7 @@ import { MapPinIcon } from "lucide-react";
 import { CalendarIcon, UsersIcon } from "lucide-react";
 import TasksTable from '@/components/ui/TaskList.tsx'
 import CalCard from '@/components/ui/CalCard.tsx'
+import UserCard from '@/components/ui/UserCard.tsx'
 
 function Header() {
     return (
@@ -50,6 +51,9 @@ function Header() {
                     <CalCard />
                 </div>
 
+                <div className="flex ml-10 -mt-23">
+                    <UserCard />
+                </div>
 
             </section>
         </div>
