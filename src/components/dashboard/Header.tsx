@@ -4,6 +4,7 @@ import { CheckCircleIcon } from "lucide-react";
 import { MapPinIcon } from "lucide-react";
 import { CalendarIcon, UsersIcon } from "lucide-react";
 import TasksTable from '@/components/ui/TaskList.tsx'
+import CalCard from '@/components/ui/CalCard.tsx'
 
 function Header() {
     return (
@@ -44,9 +45,11 @@ function Header() {
                     />
                 </div>
 
-                <div>
+                <div className="flex gap-6 ml-10 mt-8 mr-10">
                     <TasksTable />
+                    <CalCard />
                 </div>
+
 
             </section>
         </div>

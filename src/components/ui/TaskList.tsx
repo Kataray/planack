@@ -38,7 +38,7 @@ export default function ChecklistCard({ className }: ChecklistCardProps) {
     };
 
     return (
-        <div className="w-110 ml-10 mt-8">
+        <div className="w-150">
             <div
                 className={cn(
                     "rounded-xl shadow-xl bg-[#19191c] p-6",
@@ -54,7 +54,7 @@ export default function ChecklistCard({ className }: ChecklistCardProps) {
                     <div className="relative">
                         <select
                             id="task-group"
-                            className="w-36 p-2 bg-black text-white rounded-md absolute top-0 right-0"
+                            className="w-36 p-2 bg-black text-white rounded-md absolute -mt-4 right-0"
                             onChange={handleGroupChange}
                             value={selectedGroup || ""}
                         >
