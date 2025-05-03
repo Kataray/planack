@@ -4,7 +4,7 @@ function Sidebar() {
 
             <h1 className="font-cal text-5xl flex justify-left ml-5 mt-5 text-[#FFFFFF]">Planack</h1>
 
-            <div className="mt-10 space-y-6 ml-5 flex flex-col">
+            <div className="mt-10 space-y-6 ml-5 flex flex-col overflow-y-auto">
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
                     <h2 className="font-cal text-xl text-white">Dashboard</h2>
