@@ -1,5 +1,5 @@
 import Sidebar from 'src/components/Navbar/Sidebar.tsx';
-import CardDemo from '@/components/ui/cards-demo-2.tsx'
+import CardDemo from '@/components/ui/card.tsx'
 
 function Header() {
     return (
