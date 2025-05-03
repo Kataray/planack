@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Alice Johnson",
+    "phone": "+1-202-555-0173",
+    "email": "alice.johnson@example.com"
+  },
+  {
+    "name": "Michael Thompson",
+    "phone": "+1-202-555-0189",
+    "email": "michael.thompson@example.com"
+  },
+  {
+    "name": "Sophia Martinez",
+    "phone": "+1-202-555-0157",
+    "email": "sophia.martinez@example.com"
+  },
+  {
+    "name": "David Lee",
+    "phone": "+1-202-555-0192",
+    "email": "david.lee@example.com"
+  },
+  {
+    "name": "Olivia Brown",
+    "phone": "+1-202-555-0124",
+    "email": "olivia.brown@example.com"
+  },
+  {
+    "name": "James Wilson",
+    "phone": "+1-202-555-0166",
+    "email": "james.wilson@example.com"
+  },
+  {
+    "name": "Emily Davis",
+    "phone": "+1-202-555-0148",
+    "email": "emily.davis@example.com"
+  },
+  {
+    "name": "Daniel Garcia",
+    "phone": "+1-202-555-0113",
+    "email": "daniel.garcia@example.com"
+  }
+]
