@@ -1,45 +1,47 @@
 function Sidebar() {
     return (
-        <section className="bg-[#19191c] relative w-90 h-screen overflow-hidden">
+        <section className="bg-[#19191c] flex flex-col w-1/4 h-screen">
 
-            <h1 className="font-cal text-5xl flex justify-left ml-5 mt-5 text-[#FFFFFF]">Planack</h1>
+            <h1 className="font-cal text-[5vh] flex justify-start ml-5 mt-5 text-[#FFFFFF]">
+                Planack
+            </h1>
 
-            <div className="mt-10 space-y-6 ml-5 flex flex-col overflow-y-auto">
+            <div className="flex flex-col flex-grow space-y-2 ml-5  overflow-hidden">
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Dashboard</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Dashboard</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Calendar</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Calendar</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Team</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Team</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Tasks</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Tasks</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Resources</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Resources</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Finance</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Finance</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Workshops</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Workshops</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Timeline</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Timeline</h2>
                 </div>
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md transition-all duration-200 p-3">
-                    <h2 className="font-cal text-xl text-white">Photos</h2>
+                    <h2 className="font-cal text-[3vh] text-white">Photos</h2>
                 </div>
             </div>
         </section>
