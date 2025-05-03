@@ -70,7 +70,7 @@ export default function ChecklistCard({ className }: ChecklistCardProps) {
 
                 {/* Display the selected group */}
                 {selectedGroup && (
-                    <div className="overflow-y-auto h-[calc(100%-60px)]"> {/* Ensure that content scrolls if needed */}
+                    <div className="overflow-y-hidden h-[calc(100%-60px)]"> {/* Ensure that content scrolls if needed */}
                         {data
                             .filter((group) => group.group === selectedGroup)
                             .map((group) => (
