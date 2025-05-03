@@ -1,13 +1,14 @@
 import './App.css'
 import Header from './components/dashboard/Header.tsx'
-import TasksPage from './pages/tasks/TasksPage.tsx'
+
+import FinancePage from "@/pages/finance/FinancePage.tsx";
 
 function App() {
 
   return (
     <>
       <div>
-        <TasksPage />
+        <Header />
       </div>
     </>
   )

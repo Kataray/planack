@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Hackathon Stickers",
+    "price": 1500.00,
+    "amount": 100,
+    "date": "2025-05-15"
+  },
+  {
+    "id": 2,
+    "name": "GDSC Graphic Shirts",
+    "price": 2000,
+    "amount": 100,
+    "date": "2025-05-10"
+  },
+  {
+    "id": 3,
+    "name": "Lanyards/Name Tags",
+    "price": 400.00,
+    "amount": 100.00,
+    "date": "2025-05-01"
+  },
+  {
+    "id": 1234567890123,
+    "name": "New Expense",
+    "price": 100.50,
+    "amount": 5,
+    "date": "2025-05-20"
+  }
+]

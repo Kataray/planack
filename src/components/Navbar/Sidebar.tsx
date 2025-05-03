@@ -1,12 +1,15 @@
+import logo from '@/assets/logo.png';
+
 function Sidebar() {
     return (
         <section className="bg-[#19191c] flex flex-col w-1/4 h-screen">
 
-            <h1 className="font-cal text-[5vh] flex justify-start px-5 mt-5 text-[#FFFFFF]">
+            <img src={logo} alt="Logo" className="size-11 absolute ml-5 mt-7" />
+            <h1 className="font-cal text-[5vh] flex  ml-18 mt-5 text-[#FFFFFF]">
                 Planack
             </h1>
 
-            <div className="flex flex-col flex-grow space-y-2 ml-2 overflow-hidden">
+            <div className="flex flex-col flex-grow space-y-2 mt-10 ml-2 overflow-hidden">
 
                 <div className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md hover:shadow-md transition-all duration-300 p-3">
                     <h2 className="font-cal text-[3vh] text-white">Dashboard</h2>
