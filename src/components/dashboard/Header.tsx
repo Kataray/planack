@@ -11,7 +11,7 @@ function Header() {
     return (
         <div className="flex">
             <Sidebar />
-            <section className="bg-[#000000] relative w-screen h-screen overflow-hidden">
+            <section className="bg-[#000000] relative w-screen h-screen overflow-y-scroll">
                 <h1 className="font-cal text-[4vh] flex justify-start ml-10 mt-7 text-[#FFFFFF]">
                     Hackathon Dashboard
                 </h1>
