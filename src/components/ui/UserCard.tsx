@@ -11,7 +11,7 @@ interface CardProps {
 
 export default function Card({ className }: CardProps) {
     return (
-        <div className="w-95">
+        <div className="w-100 pr-5 pb-5 ">
             <div
                 className={cn(
                     "h-65 rounded-xl shadow-xl bg-[#19191c] p-6 flex flex-col justify-between",
