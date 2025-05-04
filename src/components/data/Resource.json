@@ -4,20 +4,23 @@
     "name": "Hackthon Acceptances",
     "type": "PDF",
     "link": "/docs/project-brief.pdf",
-    "fileName": ""
+    "fileName": "",
+    "fileUrl": " "
   },
   {
     "id": "2",
     "name": "Waiver",
     "type": "ZIP",
     "link": "/assets/designs.zip",
-    "fileName": ""
+    "fileName": "",
+    "fileUrl":" "
   },
   {
     "id": "3",
     "name": "Food Allergy Slip",
     "type": "DOCX",
     "link": "/docs/meeting-notes.docx",
-    "fileName": ""
+    "fileName": "",
+    "fileUrl": " "
   }
 ]
