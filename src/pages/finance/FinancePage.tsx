@@ -1,4 +1,6 @@
-import { useState } from 'react';
+
+import {useEffect, useState} from 'react';
+
 import Sidebar from "@/components/Navbar/Sidebar.tsx";
 
 
@@ -11,11 +13,13 @@ type Expense = {
 };
 
 export default function FinancePage() {
-    const [expenses, setExpenses] = useState<Expense[]>([
+    const [expenses, setExpenses] = useState<Expense[]>(() => {
+        const savedExpenses = localStorage.getItem('expenses');
+        return savedExpenses ? JSON.parse(savedExpenses) : [
         { id: 1, name: 'Hackathon Stickers', price: 1500.00, amount: 100, date: '2025-05-15' },
         { id: 2, name: 'GDSC Graphic Shirts', price: 2000, amount: 100, date: '2025-05-10' },
         { id: 3, name: 'Lanyards/Name Tags', price: 400.00, amount: 100.00, date: '2025-05-01' }
-    ]);
+    ]});
 
     const [newExpense, setNewExpense] = useState<Omit<Expense, 'id'>>({
         name: '',
@@ -24,8 +28,11 @@ export default function FinancePage() {
         date: new Date().toISOString().split('T')[0]
     });
 
+    useEffect(()=>{
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+    },[expenses]);
     const totalExpenses = expenses.reduce((sum, expense) => sum + expense.price, 0);
-    const budget = 5000; // Example budget amount
+    const budget = 7000; // Example budget amount
 
     const handleAddExpense = (e: React.FormEvent) => {
         e.preventDefault();
@@ -63,7 +70,9 @@ export default function FinancePage() {
                 <div className="flex justify-between items-center mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-white">Finance</h1>
-                        <p className="text-[#a1a1a1]">Expense Number</p>
+
+                        <p className="text-[#a1a1a1]">Managing your Teams Finance</p>
+
                     </div>
 
                     <div className="flex space-x-4">

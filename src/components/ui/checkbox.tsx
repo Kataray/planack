@@ -1,30 +1,24 @@
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { CheckIcon } from "lucide-react"
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { CheckIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-
-function Checkbox({
-  ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
-  return (
-      <CheckboxPrimitive.Root
-          data-slot="checkbox"
-          className={cn(
-              "w-1 h-1 bg-white !rounded-none flex items-center justify-center", // ensure square & visible border
-               // preserve passed-in className
-          )}
-          {...props}
-      >
-        <CheckboxPrimitive.Indicator
-            data-slot="checkbox-indicator"
-            className="flex items-center justify-center text-current transition-normal"
+function Checkbox({ checked, onCheckedChange }: { checked: boolean; onCheckedChange: () => void }) {
+    return (
+        <CheckboxPrimitive.Root
+            checked={checked}
+            onCheckedChange={onCheckedChange}
+            className={cn(
+                "w-3 h-6 border-2 !border-gray-400 rounded-md flex items-center justify-center !color-white transition-colors",
+                checked ? "bg-blue-500 border-blue-500" : "bg-white",
+                "hover:bg-blue-600 hover:border-blue-600"
+            )}
         >
-          <CheckIcon className="size-5 bg-white text-black" />
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Root>
-  )
-
+            <CheckboxPrimitive.Indicator>
+                {/* The checkmark will be white when checked */}
+                <CheckIcon className="w-4 h-4 text-white" />
+            </CheckboxPrimitive.Indicator>
+        </CheckboxPrimitive.Root>
+    );
 }
 
-export { Checkbox }
+export { Checkbox };
