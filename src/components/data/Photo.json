@@ -1,0 +1,19 @@
+{
+  "photos": [
+    {
+      "id": 1,
+      "imageBase64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...",
+      "caption": "Team building activity"
+    },
+    {
+      "id": 2,
+      "imageBase64": "data:image/png;base64,iVBORw0KGgoAAA...",
+      "caption": "Workshop session"
+    },
+    {
+      "id": 3,
+      "imageBase64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...",
+      "caption": "Award ceremony"
+    }
+  ]
+}

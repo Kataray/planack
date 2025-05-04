@@ -1,0 +1,34 @@
+{
+  "days": [
+    {
+      "id": 1,
+      "title": "Day 1",
+      "events": [
+        {
+          "id": 101,
+          "title": "Welcome Session",
+          "description": "Introduction to the event and schedule overview",
+          "whenWhere": "9:00 AM - Main Hall"
+        },
+        {
+          "id": 102,
+          "title": "Team Formation",
+          "description": "Meet your team members and brainstorm ideas",
+          "whenWhere": "10:30 AM - Breakout Room A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Day 2",
+      "events": [
+        {
+          "id": 201,
+          "title": "Workshop: Advanced Techniques",
+          "description": "Learn cutting-edge methods from industry experts",
+          "whenWhere": "10:00 AM - Workshop Room 3"
+        }
+      ]
+    }
+  ]
+}

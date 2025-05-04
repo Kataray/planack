@@ -80,7 +80,7 @@ function Header() {
             <Sidebar />
             <section className="bg-[#000000] relative w-screen h-screen overflow-y-scroll text-white">
                 <h1 className="font-cal text-[4vh] ml-10 mt-7">Hackathon Dashboard</h1>
-                <h2 className="font-cal text-[2.5vh] ml-10 -mt-2">Every hack on track</h2>
+                <h2 className="font-cal text-[2.5vh] ml-10 -mt-2">Every hack's on track</h2>
 
                 <div className="absolute right-15 top-13 scale-180">
                     <Avatar>

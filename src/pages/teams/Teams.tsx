@@ -127,7 +127,7 @@ export default function TeamsPage() {
                 </div>
 
                 {/* Add New Team Member Form */}
-                <div className="bg-[#3c3c3c] p-6 rounded-lg mb-8">
+                <div className="bg-[#19191c] p-6 rounded-lg mb-8">
                     <form onSubmit={handleAddMember} className="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-[#a1a1a1] mb-1">Name</label>
@@ -172,7 +172,7 @@ export default function TeamsPage() {
                 {/* Team Members List */}
                 <div className="space-y-4">
                     {teams.map((member) => (
-                        <div key={member.id} className="bg-[#3c3c3c] p-4 rounded-lg">
+                        <div key={member.id} className="bg-[#19191c] p-4 rounded-lg">
                             <div className="flex items-center">
                                 <input type="checkbox" className="mr-3 h-5 w-5" />
                                 <div className="flex-1">
