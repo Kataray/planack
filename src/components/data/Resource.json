@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Hackthon Acceptances",
+    "type": "PDF",
+    "link": "/docs/project-brief.pdf",
+    "fileName": ""
+  },
+  {
+    "id": "2",
+    "name": "Waiver",
+    "type": "ZIP",
+    "link": "/assets/designs.zip",
+    "fileName": ""
+  },
+  {
+    "id": "3",
+    "name": "Food Allergy Slip",
+    "type": "DOCX",
+    "link": "/docs/meeting-notes.docx",
+    "fileName": ""
+  }
+]

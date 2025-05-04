@@ -1,4 +1,10 @@
 import { useState, useEffect } from 'react';
+import Sidebar from '@/components/Navbar/Sidebar.tsx'
+
+//useEffect(() => {
+    // Uncomment this to reset your data
+    //localStorage.removeItem('teamsData');
+//}, []);
 
 type TeamMember = {
     id: string;
@@ -109,12 +115,8 @@ export default function TeamsPage() {
     };
 
     return (
-        <div className="flex h-screen bg-[#19191c]">
-            {/* Sidebar - same as your Finance page */}
-            <div className="w-64 bg-[#19191c] border-r border-[#3c3c3c] p-4">
-                {/* ... same sidebar content as your Finance page ... */}
-            </div>
-
+        <div className="flex h-screen w-screen bg-[#000000]">
+            <Sidebar />
             {/* Main Content */}
             <div className="flex-1 p-8 overflow-auto">
                 <div className="flex justify-between items-center mb-8">
@@ -134,7 +136,7 @@ export default function TeamsPage() {
                                 name="name"
                                 value={newMember.name}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md text-white"
                                 required
                             />
                         </div>
@@ -145,7 +147,7 @@ export default function TeamsPage() {
                                 name="position"
                                 value={newMember.position}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md text-white"
                                 required
                             />
                         </div>
@@ -156,13 +158,13 @@ export default function TeamsPage() {
                                 name="contact"
                                 value={newMember.contact}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md text-white"
                             />
                         </div>
                         <div className="flex items-end">
                             <button
                                 type="submit"
-                                className="w-full bg-white text-black py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">Add a new Team Member</button>
+                                className="w-full !bg-[#000000] border border-[#19191c] text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">Add a new Team </button>
                         </div>
                     </form>
                 </div>
@@ -175,19 +177,16 @@ export default function TeamsPage() {
                                 <input type="checkbox" className="mr-3 h-5 w-5" />
                                 <div className="flex-1">
                                     <span className="text-white">{member.name}</span>
-                                    <span className="text-[#a1a1a1] mx-2">|</span>
+                                    <span className="   text-[#a1a1a1] mx-2">|</span>
                                     <span className="text-[#a1a1a1]">{member.position}</span>
                                     <span className="text-[#a1a1a1] mx-2">|</span>
-                                    <span className="text-blue-400">[{member.contact}]</span>
+                                    <span className="text-white">[{member.contact}]</span>
                                 </div>
                                 <button
                                     onClick={() => toggleSubMemberForm(member.id)}
-                                    className="ml-2 bg-[#19191c] text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
-                                >
-                                    Add Sub-Member
-                                </button>
+                                    className="ml-2 !bg-[#000000] border border-[#19191c]] text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
+                                >Add Sub-Member</button>
                             </div>
-
                             {/* Sub-member form */}
                             {newSubMember?.parentId === member.id && (
                                 <div className="mt-3 ml-8 p-3 bg-[#2a2a2a] rounded">
@@ -198,7 +197,7 @@ export default function TeamsPage() {
                                             value={newSubMember.member.name}
                                             onChange={handleSubMemberInputChange}
                                             placeholder="Name"
-                                            className="px-2 py-1 bg-[#19191c] border border-[#3c3c3c] rounded text-white"
+                                            className="px-2 py-1 !bg-[#000000] border border-[#19191c] rounded text-white"
                                             required
                                         />
                                         <input
@@ -207,7 +206,7 @@ export default function TeamsPage() {
                                             value={newSubMember.member.position}
                                             onChange={handleSubMemberInputChange}
                                             placeholder="Position"
-                                            className="px-2 py-1 bg-[#19191c] border border-[#3c3c3c] rounded text-white"
+                                            className="px-2 py-1 !bg-[#000000] border border-[#19191c] rounded text-white"
                                             required
                                         />
                                         <input
@@ -216,9 +215,9 @@ export default function TeamsPage() {
                                             value={newSubMember.member.contact}
                                             onChange={handleSubMemberInputChange}
                                             placeholder="Contact"
-                                            className="px-2 py-1 bg-[#19191c] border border-[#3c3c3c] rounded text-white"/> <button
+                                            className="px-2 py-1 !bg-[#000000] border border-[#19191c] rounded text-white"/> <button
                                             onClick={() => handleAddSubMember(member.id)}
-                                            className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">Add</button>
+                                            className="!bg-[#000000] border border-[#19191c] text-white px-3 py-1 rounded  transition-colors">Add</button>
                                     </div>
                                 </div>
                             )}
@@ -234,7 +233,7 @@ export default function TeamsPage() {
                                                 <span className="text-[#a1a1a1] mx-2">|</span>
                                                 <span className="text-[#a1a1a1]">{subMember.position}</span>
                                                 <span className="text-[#a1a1a1] mx-2">|</span>
-                                                <span className="text-blue-400">[{subMember.contact}]</span>
+                                                <span className="text-white">[{subMember.contact}]</span>
                                             </div>
                                         </div>
                                     ))}

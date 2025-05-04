@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import Sidebar from "@/components/Navbar/Sidebar.tsx";
+
 
 type Expense = {
     id: number;
@@ -9,11 +11,13 @@ type Expense = {
 };
 
 export default function FinancePage() {
-    const [expenses, setExpenses] = useState<Expense[]>([
+    const [expenses, setExpenses] = useState<Expense[]>(() => {
+        const savedExpenses = localStorage.getItem('expenses');
+        return savedExpenses ? JSON.parse(savedExpenses) : [
         { id: 1, name: 'Hackathon Stickers', price: 1500.00, amount: 100, date: '2025-05-15' },
         { id: 2, name: 'GDSC Graphic Shirts', price: 2000, amount: 100, date: '2025-05-10' },
         { id: 3, name: 'Lanyards/Name Tags', price: 400.00, amount: 100.00, date: '2025-05-01' }
-    ]);
+    ]});
 
     const [newExpense, setNewExpense] = useState<Omit<Expense, 'id'>>({
         name: '',
@@ -22,8 +26,11 @@ export default function FinancePage() {
         date: new Date().toISOString().split('T')[0]
     });
 
+    useEffect(()=>{
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+    },[expenses]);
     const totalExpenses = expenses.reduce((sum, expense) => sum + expense.price, 0);
-    const budget = 5000; // Example budget amount
+    const budget = 7000; // Example budget amount
 
     const handleAddExpense = (e: React.FormEvent) => {
         e.preventDefault();
@@ -51,42 +58,9 @@ export default function FinancePage() {
     };
 
     return (
-        <div className="flex h-screen w-screen bg-[#19191c]">
-            {/* Sidebar */}
-            <div className="w-64 bg-[#19191c] border-r border-[#3c3c3c] p-4">
-                <h2 className="text-xl font-bold mb-6 text-white">PLANAC</h2>
-                <nav>
-                    <ul className="space-y-2">
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Calender</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Team</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Tasks</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Resources</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 bg-[#3c3c3c] border-b-2 border-white rounded-md font-medium text-white">Finance</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Workshops</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Timeline</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-2 hover:bg-[#3c3c3c] hover:border-b-2 hover:border-white hover:scale-105 hover:rounded-md transition-all duration-200 text-white">Photos</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+        <div className="flex h-screen w-screen bg-[#000000]">
+
+            <Sidebar />
 
             {/* Main Content */}
             <div className="flex-1 p-8 overflow-auto">
@@ -94,15 +68,15 @@ export default function FinancePage() {
                 <div className="flex justify-between items-center mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-white">Finance</h1>
-                        <p className="text-[#a1a1a1]">Expense Number</p>
+                        <p className="text-[#a1a1a1]">Managing your Teams Finance</p>
                     </div>
 
                     <div className="flex space-x-4">
-                        <div className="bg-[#3c3c3c] p-4 rounded-lg border border-[#3c3c3c] w-40">
+                        <div className="bg-[#19191c] p-4 rounded-lg border border-[#19191c] w-40">
                             <p className="text-[#a1a1a1] text-sm">Budget</p>
                             <p className="text-xl font-semibold text-white">${budget.toLocaleString()}</p>
                         </div>
-                        <div className="bg-[#3c3c3c] p-4 rounded-lg border border-[#3c3c3c] w-40">
+                        <div className="bg-[#19191c] p-4 rounded-lg border border-[#19191c] w-40">
                             <p className="text-[#a1a1a1] text-sm">Total</p>
                             <p className="text-xl font-semibold text-white">${totalExpenses.toLocaleString()}</p>
                         </div>
@@ -110,7 +84,7 @@ export default function FinancePage() {
                 </div>
 
                 {/* Form */}
-                <div className="bg-[#3c3c3c] p-6 rounded-lg border border-[#3c3c3c] mb-8">
+                <div className="bg-[#19191c] p-6 rounded-lg border border-[#19191c] mb-8">
                     <h2 className="text-lg font-semibold text-white mb-4">Add More Items</h2>
                     <p className="text-[#a1a1a1] mb-4"></p>
 
@@ -122,7 +96,7 @@ export default function FinancePage() {
                                 name="name"
                                 value={newExpense.name}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
                                 required
                             />
                         </div>
@@ -133,7 +107,7 @@ export default function FinancePage() {
                                 name="price"
                                 value={newExpense.price || ''}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
                                 required
                                 min="0"
                                 step="0.01"
@@ -146,7 +120,7 @@ export default function FinancePage() {
                                 name="amount"
                                 value={newExpense.amount || ''}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
                                 required
                                 min="0"
                                 step="0.01"
@@ -159,20 +133,21 @@ export default function FinancePage() {
                                 name="date"
                                 value={newExpense.date}
                                 onChange={handleInputChange}
-                                className="w-full px-3 py-2 bg-[#19191c] border border-[#3c3c3c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
+                                className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
                                 required
-                            />
-                        </div>
+                            /></div>
+
                         <div className="flex items-end">
                             <button
                                 type="submit"
-                                className="w-full bg-[#19191c] text-black py-2 px-4 rounded-md hover:bg-blue-700 transition-colors align-middle">Click</button>
+                                className="w-full !bg-[#000000] border border-[#19191c] text-white align-middle">Confirm
+                            </button>
                         </div>
                     </form>
                 </div>
 
                 {/* Expense Table */}
-                <div className="bg-[#3c3c3c] rounded-lg border border-[#3c3c3c] overflow-hidden">
+                <div className="bg-[#19191c] rounded-lg border border-[#19191c] overflow-hidden">
                     <table className="min-w-full divide-y divide-[#19191c]">
                         <thead className="bg-[#19191c]">
                         <tr>
@@ -182,9 +157,9 @@ export default function FinancePage() {
                             <th className="px-6 py-3 text-left text-xs font-medium text-[#a1a1a1] uppercase tracking-wider">Date</th>
                         </tr>
                         </thead>
-                        <tbody className="bg-[#3c3c3c] divide-y divide-[#19191c]">
+                        <tbody className="bg-[#19191c] divide-y divide-[#19191c]">
                         {expenses.map((expense) => (
-                            <tr key={expense.id} className="hover:bg-[#19191c] transition-colors duration-200">
+                            <tr key={expense.id} className="hover:bg-[#1d1a1a] transition-colors duration-200">
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{expense.name}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-[#a1a1a1]">${expense.price.toFixed(2)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-[#a1a1a1]">{expense.amount}</td>
