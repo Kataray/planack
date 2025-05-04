@@ -10,12 +10,31 @@ interface PhotoCard {
     caption?: string;
 }
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB (adjust as needed)
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
 export default function PhotoBoard() {
     const [photos, setPhotos] = useState<PhotoCard[]>(() => {
         const saved = localStorage.getItem("photoCards");
-        return saved ? JSON.parse(saved) : [];
+        if (saved) return JSON.parse(saved);
+
+        // Built-in example images from public/images/
+        return [
+            {
+                id: 1,
+                imageBase64: "/images/photo1.jpg",
+                caption: "Beach view",
+            },
+            {
+                id: 2,
+                imageBase64: "/images/photo2.jpg",
+                caption: "City skyline",
+            },
+            {
+                id: 3,
+                imageBase64: "/images/photo3.jpg",
+                caption: "Sunset mountain",
+            },
+        ];
     });
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -50,7 +69,6 @@ export default function PhotoBoard() {
     const createPhotoCard = async () => {
         if (!selectedFile) return;
 
-        // Check file size
         if (selectedFile.size > MAX_FILE_SIZE) {
             setErrorMessage("File is too large. Please upload a file under 5MB.");
             return;
@@ -66,7 +84,7 @@ export default function PhotoBoard() {
 
             setPhotos([...photos, newCard]);
             closePopup();
-        } catch (error) {
+        } catch {
             setErrorMessage("An error occurred while uploading the photo.");
         }
     };
@@ -123,7 +141,6 @@ export default function PhotoBoard() {
                     ))}
                 </div>
 
-                {/* File Upload Popup */}
                 {isPopupOpen && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                         <div className="bg-[#19191c] p-6 rounded-lg shadow-lg w-full max-w-md text-white">
@@ -165,7 +182,6 @@ export default function PhotoBoard() {
                     </div>
                 )}
 
-                {/* Edit Caption Popup */}
                 {selectedPhoto && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                         <div className="bg-[#19191c] p-6 rounded-lg shadow-lg w-full max-w-md text-white">
