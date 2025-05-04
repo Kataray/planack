@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "id": 1,
+      "name": "Frontend Workshops",
+      "tasks": [
+        {
+          "id": 101,
+          "text": "React Basics",
+          "completed": false,
+          "details": "Learn JSX, props, and component structure."
+        },
+        {
+          "id": 102,
+          "text": "Tailwind Mastery",
+          "completed": true,
+          "details": "Deep dive into utility-first design with Tailwind."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Backend Workshops",
+      "tasks": [
+        {
+          "id": 201,
+          "text": "Firebase Intro",
+          "completed": false,
+          "details": "Setup Firebase, database rules, and authentication."
+        },
+        {
+          "id": 202,
+          "text": "Node.js API Design",
+          "completed": false,
+          "details": "Design RESTful APIs with Express."
+        }
+      ]
+    }
+  ]
+}

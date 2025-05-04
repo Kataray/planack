@@ -57,6 +57,18 @@ export default function TaskBoard() {
         closePopup();
     };
 
+    const deleteTask = (groupId: number, taskId: number) => {
+        setGroups(groups.map(group =>
+            group.id === groupId
+                ? {
+                    ...group,
+                    tasks: group.tasks.filter(task => task.id !== taskId)
+                }
+                : group
+        ));
+    };
+
+
     const addTaskToGroup = () => {
         if (!taskInput.trim() || selectedGroupId === null) return;
         const newTask: Task = {
@@ -154,21 +166,26 @@ export default function TaskBoard() {
                                 {groups
                                     .find((g) => g.id === selectedGroupId)
                                     ?.tasks.map((task) => (
-                                        <li key={task.id} className=" flex items-center space-x-2 !rounded-none">
-                                            <Checkbox
-                                                checked={task.completed}
-                                                onCheckedChange={() =>
-                                                    toggleTaskCompletion(selectedGroupId, task.id)
-                                                }
-                                            />
-                                            <span
-                                                className={`${
-                                                    task.completed ? "line-through text-gray-400" : ""
-                                                }`}
+                                        <li key={task.id} className="flex items-center justify-between !rounded-none">
+                                            <div className="flex items-center space-x-2">
+                                                <Checkbox
+                                                    checked={task.completed}
+                                                    onCheckedChange={() =>
+                                                        toggleTaskCompletion(selectedGroupId, task.id)
+                                                    }
+                                                />
+                                                <span className={`${task.completed ? "line-through text-gray-400" : ""}`}>
+            {task.text}
+        </span>
+                                            </div>
+                                            <button
+                                                onClick={() => deleteTask(selectedGroupId, task.id)}
+                                                className="!bg-[#19191c] text-white hover:text-black text-sm ml-2"
                                             >
-                        {task.text}
-                      </span>
+                                                Delete
+                                            </button>
                                         </li>
+
                                     ))}
                             </ul>
 
@@ -181,7 +198,7 @@ export default function TaskBoard() {
                                 />
                                 <button
                                     onClick={addTaskToGroup}
-                                    className="px-4 py-2 border !bg-[#19191c] rounded hover:bg-neutral-800"
+                                    className="px-4 py-2  !bg-[#19191c] rounded hover:bg-neutral-800"
                                 >
                                     Add
                                 </button>
