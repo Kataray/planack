@@ -15,11 +15,6 @@ function Sidebar() {
                     <h2 className="font-cal text-[3vh] !text-white no-underline">Dashboard</h2>
                 </Link>
 
-                {/* Sidebar link to Calendar */}
-                <Link to="/calendar" className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md hover:shadow-md transition-all duration-300 p-3">
-                    <h2 className="font-cal text-[3vh] !text-white no-underline">Calendar</h2>
-                </Link>
-
                 {/* Sidebar link to Team */}
                 <Link to="/team" className="sidebar-link hover:bg-[#3c3c3c] hover:border-b-2 hover:border-[#FFFFFF] hover:scale-105 hover:rounded-md hover:shadow-md transition-all duration-300 p-3">
                     <h2 className="font-cal text-[3vh] !text-white no-underline">Team</h2>

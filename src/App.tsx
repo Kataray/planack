@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import Header from './components/dashboard/Header.tsx';
 import TasksPage from '@/pages/tasks/TasksPage.tsx';
 import FinancePage from '@/pages/finance/FinancePage.tsx';
+import TimelinePage from '@/pages/timeline/Timeline.tsx';
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
                 <Route path="" element={<Header />} />
                 <Route path="/tasks" element={<TasksPage />} />
                 <Route path="/finance" element={<FinancePage />} />
+                <Route path="/timeline" element={<TimelinePage />} />
             </Routes>
         </Router>
     );
