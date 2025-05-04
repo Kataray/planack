@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa";  // Importing the trash can icon from react-icons
+import { FaTrash } from "react-icons/fa";
 import Sidebar from "src/components/Navbar/Sidebar";
 import AddCard from "src/components/ui/addCard";
 import { Checkbox } from "@/components/ui/checkbox";
 
-// Define Task and TaskGroup interfaces
 interface Task {
     id: number;
     text: string;
@@ -17,24 +16,66 @@ interface TaskGroup {
     tasks: Task[];
 }
 
+// Sample data matching your JSON structure
+const initialData = {
+    groups: [
+        {
+            id: 1,
+            name: "Finance",
+            tasks: [
+                {
+                    id: 101,
+                    text: "Submit Tax Return",
+                    completed: true
+                },
+                {
+                    id: 102,
+                    text: "Submit Tax Return",
+                    completed: true
+                },
+                {
+                    id: 103,
+                    text:"Update Budget",
+                    completed: false
+                }
+            ]
+        },
+        {
+            id: 2,
+            name: "Productivity",
+            tasks: [
+                {
+                    id: 201,
+                    text: "Read 10 Pages",
+                    completed: true
+                },
+                {
+                    id:202,
+                    text: "Clear Inbox",
+                    completed: false
+                }
+            ]
+        }
+    ]
+};
+
 export default function TaskBoard() {
-    // Load task groups from localStorage (or fallback to an empty array if no data exists)
     const [groups, setGroups] = useState<TaskGroup[]>(() => {
         const saved = localStorage.getItem("taskGroups");
-        return saved ? JSON.parse(saved) : [];
+        return saved ? JSON.parse(saved) : initialData.groups;
     });
 
-    // Save to localStorage whenever groups change
     useEffect(() => {
         localStorage.setItem("taskGroups", JSON.stringify(groups));
     }, [groups]);
 
-    // State for popup visibility and other form states
+    // All other state declarations remain the same
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [groupName, setGroupName] = useState("");
     const [selectedGroupId, setSelectedGroupId] = useState<number | null>(null);
     const [taskInput, setTaskInput] = useState("");
 
+    // All your existing functions remain exactly the same
     const openPopup = () => {
         setGroupName("");
         setIsPopupOpen(true);
@@ -82,7 +123,7 @@ export default function TaskBoard() {
                 ? { ...group, tasks: [...group.tasks, newTask] }
                 : group
         ));
-        setTaskInput(""); // Clear the task input after adding
+        setTaskInput("");
     };
 
     const toggleTaskCompletion = (groupId: number, taskId: number) => {
@@ -98,6 +139,7 @@ export default function TaskBoard() {
         ));
     };
 
+    // The return/render section remains exactly the same
     return (
         <div className="flex min-h-screen w-screen bg-black text-white">
             <Sidebar />
