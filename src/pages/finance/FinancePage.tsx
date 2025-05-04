@@ -1,4 +1,6 @@
+
 import {useEffect, useState} from 'react';
+
 import Sidebar from "@/components/Navbar/Sidebar.tsx";
 
 
@@ -68,7 +70,9 @@ export default function FinancePage() {
                 <div className="flex justify-between items-center mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-white">Finance</h1>
+
                         <p className="text-[#a1a1a1]">Managing your Teams Finance</p>
+
                     </div>
 
                     <div className="flex space-x-4">
@@ -135,13 +139,12 @@ export default function FinancePage() {
                                 onChange={handleInputChange}
                                 className="w-full px-3 py-2 bg-[#000000] border border-[#19191c] rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-white"
                                 required
-                            /></div>
-
+                            />
+                        </div>
                         <div className="flex items-end">
                             <button
                                 type="submit"
-                                className="w-full !bg-[#000000] border border-[#19191c] text-white align-middle">Confirm
-                            </button>
+                                className="w-full bg-black border-black text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors align-middle">Confirm</button>
                         </div>
                     </form>
                 </div>
