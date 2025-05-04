@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from 'src/components/Navbar/Sidebar.tsx';
 import Card from '@/components/ui/GenericCard.tsx';
 import { CheckCircleIcon, MapPinIcon, CalendarIcon, UsersIcon } from "lucide-react";
@@ -9,9 +10,11 @@ import ResourceIconCard from '@/components/ui/SmallerCards.tsx';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.tsx";
 
 import defaultEventInfo from '@/components/data/eventInfo.json';
-import defaultTaskData from '@/components/data/saveTask.json'; // import your task data
+import defaultTaskData from '@/components/data/saveTask.json';
 
 function Header() {
+    const navigate = useNavigate();
+
     const [eventData, setEventData] = useState(() => {
         const saved = localStorage.getItem('eventInfo');
         return saved ? JSON.parse(saved) : defaultEventInfo;
@@ -22,6 +25,13 @@ function Header() {
         return saved ? JSON.parse(saved) : defaultTaskData.groups;
     });
 
+    // Team members state
+    const [teamMembers, setTeamMembers] = useState([
+        { id: 1, name: 'Alex', role: 'Developer', avatar: 'https://github.com/shadcn.png' },
+        { id: 2, name: 'Taylor', role: 'Designer', avatar: 'https://github.com/shadcn.png' },
+        { id: 3, name: 'Jordan', role: 'Project Manager', avatar: 'https://github.com/shadcn.png' }
+    ]);
+
     useEffect(() => {
         localStorage.setItem('eventInfo', JSON.stringify(eventData));
     }, [eventData]);
@@ -30,14 +40,40 @@ function Header() {
         setEventData({ ...eventData, [field]: value });
     };
 
-    // Count total tasks by "text" property
-    const totalTasks = taskGroups.reduce((acc, group) => acc + group.tasks.filter(task => task.text).length, 0);
+    // Task completion functions
+    const toggleTaskCompletion = (groupId: number, taskId: number) => {
+        setTaskGroups(taskGroups.map(group => {
+            if (group.id === groupId) {
+                return {
+                    ...group,
+                    tasks: group.tasks.map(task => {
+                        if (task.id === taskId) {
+                            return { ...task, completed: !task.completed };
+                        }
+                        return task;
+                    })
+                };
+            }
+            return group;
+        }));
+    };
 
-    // Count completed tasks
+    const totalTasks = taskGroups.reduce((acc, group) => acc + group.tasks.filter(task => task.text).length, 0);
     const completedTasks = taskGroups.reduce(
         (acc, group) => acc + group.tasks.filter(task => task.completed && task.text).length,
         0
     );
+
+    // Add new team member
+    const addTeamMember = () => {
+        const newMember = {
+            id: teamMembers.length + 1,
+            name: `New Member ${teamMembers.length + 1}`,
+            role: 'Team Member',
+            avatar: 'https://github.com/shadcn.png'
+        };
+        setTeamMembers([...teamMembers, newMember]);
+    };
 
     return (
         <div className="flex">
@@ -74,15 +110,17 @@ function Header() {
                     />
                     <Card
                         label="Participants"
-                        title="30 Participants"
+                        title={`${teamMembers.length} Participants`}
                         subtitle="max 150"
                         icon={<UsersIcon className="text-white h-8 w-8" />}
+                        onClick={() => navigate('/team')}
                     />
                     <Card
                         label="Tasks"
                         title={`${completedTasks}/${totalTasks} Completed`}
                         subtitle="40 days left"
                         icon={<CheckCircleIcon className="text-white h-8 w-8" />}
+                        onClick={() => navigate('/tasks')}
                     />
                     <Card
                         label="Location"
@@ -105,16 +143,36 @@ function Header() {
                 </div>
 
                 <div className="flex gap-6 ml-10 mt-8 mr-10">
-                    <TasksTable />
+                    <TasksTable
+                        taskGroups={taskGroups}
+                        onTaskToggle={toggleTaskCompletion}
+                        onAddTask={() => navigate('/tasks')}
+                    />
                     <CalCard />
                 </div>
 
                 <div className="flex ml-10 -mt-23">
-                    <UserCard />
+                    <UserCard
+                        members={teamMembers}
+                        onAddMember={addTeamMember}
+                        onMemberClick={(member) => navigate(`/team/${member.id}`)}
+                    />
                 </div>
 
-                <div className="flex ml-10 -mt-23">
-                    <ResourceIconCard />
+                {/* Resource Cards Section */}
+                <div className="flex justify-end gap-6 ml-10 mr-10 mt-8 absolute bottom-2 right-0">
+                    <ResourceIconCard
+                        type="resources"
+                        onClick={() => navigate('/resources')}
+                    />
+                    <ResourceIconCard
+                        type="photos"
+                        onClick={() => navigate('/photos')}
+                    />
+                    <ResourceIconCard
+                        type="finance"
+                        onClick={() => navigate('/finance')}
+                    />
                 </div>
             </section>
         </div>

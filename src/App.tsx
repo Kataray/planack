@@ -5,6 +5,8 @@ import TasksPage from '@/pages/tasks/TasksPage.tsx';
 import FinancePage from '@/pages/finance/FinancePage.tsx';
 import PhotoPage from '@/pages/photos/photoPage.tsx';
 import WorkshopPage from '@/pages/workshops/workshopPage.tsx';
+import TeamsPage from '@/pages/teams/Teams.tsx';
+import ResourcePage from '@/pages/resources/Resources.tsx';
 
 import TimelinePage from '@/pages/timeline/Timeline.tsx';
 
@@ -18,6 +20,8 @@ function App() {
                 <Route path="/timeline" element={<TimelinePage />} />
                 <Route path="/photos" element={<PhotoPage />} />
                 <Route path="/workshops" element={<WorkshopPage />} />
+                <Route path="/team" element={<TeamsPage />} />
+                <Route path="/resources" element={<ResourcePage />} />
 
             </Routes>
         </Router>
