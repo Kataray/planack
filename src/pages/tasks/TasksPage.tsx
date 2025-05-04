@@ -1,12 +1,10 @@
-"use client";
-
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import { FaTrash } from "react-icons/fa";  // Importing the trash can icon from react-icons
 import Sidebar from "src/components/Navbar/Sidebar";
 import AddCard from "src/components/ui/addCard";
 import { Checkbox } from "@/components/ui/checkbox";
-import saveTask from 'src/components/data/saveTask.json';
 
-
+// Define Task and TaskGroup interfaces
 interface Task {
     id: number;
     text: string;
@@ -20,20 +18,20 @@ interface TaskGroup {
 }
 
 export default function TaskBoard() {
-    // Load from localStorage OR fallback to JSON initial data
+    // Load task groups from localStorage (or fallback to an empty array if no data exists)
     const [groups, setGroups] = useState<TaskGroup[]>(() => {
-        const saved = localStorage.getItem('taskGroups');
-        return saved ? JSON.parse(saved) : saveTask.groups;
+        const saved = localStorage.getItem("taskGroups");
+        return saved ? JSON.parse(saved) : [];
     });
 
     // Save to localStorage whenever groups change
     useEffect(() => {
-        localStorage.setItem('taskGroups', JSON.stringify(groups));
+        localStorage.setItem("taskGroups", JSON.stringify(groups));
     }, [groups]);
+
+    // State for popup visibility and other form states
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [groupName, setGroupName] = useState("");
-
-
     const [selectedGroupId, setSelectedGroupId] = useState<number | null>(null);
     const [taskInput, setTaskInput] = useState("");
 
@@ -57,6 +55,21 @@ export default function TaskBoard() {
         closePopup();
     };
 
+    const deleteTask = (groupId: number, taskId: number) => {
+        setGroups(groups.map(group =>
+            group.id === groupId
+                ? {
+                    ...group,
+                    tasks: group.tasks.filter(task => task.id !== taskId),
+                }
+                : group
+        ));
+    };
+
+    const deleteGroup = (groupId: number) => {
+        setGroups(groups.filter(group => group.id !== groupId));
+    };
+
     const addTaskToGroup = () => {
         if (!taskInput.trim() || selectedGroupId === null) return;
         const newTask: Task = {
@@ -64,20 +77,20 @@ export default function TaskBoard() {
             text: taskInput.trim(),
             completed: false,
         };
-        setGroups(groups.map((group) =>
+        setGroups(groups.map(group =>
             group.id === selectedGroupId
                 ? { ...group, tasks: [...group.tasks, newTask] }
                 : group
         ));
-        setTaskInput("");
+        setTaskInput(""); // Clear the task input after adding
     };
 
     const toggleTaskCompletion = (groupId: number, taskId: number) => {
-        setGroups(groups.map((group) =>
+        setGroups(groups.map(group =>
             group.id === groupId
                 ? {
                     ...group,
-                    tasks: group.tasks.map((task) =>
+                    tasks: group.tasks.map(task =>
                         task.id === taskId ? { ...task, completed: !task.completed } : task
                     ),
                 }
@@ -97,7 +110,7 @@ export default function TaskBoard() {
                     {[...groups, { id: -1, name: "__add_card__", tasks: [] }].map((group) => (
                         <div
                             key={group.id}
-                            className="w-60 h-44 cursor-pointer"
+                            className="w-81 h-44 cursor-pointer relative"
                             onClick={() => {
                                 if (group.id !== -1) setSelectedGroupId(group.id);
                             }}
@@ -105,8 +118,15 @@ export default function TaskBoard() {
                             {group.name === "__add_card__" ? (
                                 <AddCard onClick={openPopup} />
                             ) : (
-                                <div className="w-full h-full bg-[#19191c] p-8 rounded-xl shadow-xl text-white flex justify-between">
-                                    <h2 className="text-lg font-semibold">{group.name}</h2>
+                                <div className="w-full h-full bg-[#19191c] p-8 rounded-xl shadow-xl text-white flex justify-center items-center">
+                                    <h2 className="text-2xl font-semibold text-center">{group.name}</h2>
+                                    <FaTrash
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            deleteGroup(group.id);
+                                        }}
+                                        className="absolute top-2 left-2 text-white cursor-pointer text-xl hover:text-gray-400"
+                                    />
                                 </div>
                             )}
                         </div>
@@ -146,28 +166,30 @@ export default function TaskBoard() {
                 {selectedGroupId !== null && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                         <div className="bg-[#19191c] p-6 shadow-lg w-full max-w-md text-white">
-
-                            <h2 className="text-xl font-bold mb-3">Tasks for this Group </h2>
-
+                            <h2 className="text-xl font-bold mb-3">Tasks for this Group</h2>
 
                             <ul className="space-y-3 mb-4">
                                 {groups
                                     .find((g) => g.id === selectedGroupId)
                                     ?.tasks.map((task) => (
-                                        <li key={task.id} className=" flex items-center space-x-2 !rounded-none">
-                                            <Checkbox
-                                                checked={task.completed}
-                                                onCheckedChange={() =>
-                                                    toggleTaskCompletion(selectedGroupId, task.id)
-                                                }
-                                            />
-                                            <span
-                                                className={`${
-                                                    task.completed ? "line-through text-gray-400" : ""
-                                                }`}
+                                        <li key={task.id} className="flex items-center justify-between !rounded-none">
+                                            <div className="flex items-center space-x-2">
+                                                <Checkbox
+                                                    checked={task.completed}
+                                                    onCheckedChange={() =>
+                                                        toggleTaskCompletion(selectedGroupId, task.id)
+                                                    }
+                                                />
+                                                <span className={`${task.completed ? "line-through text-gray-400" : ""}`}>
+                                                    {task.text}
+                                                </span>
+                                            </div>
+                                            <button
+                                                onClick={() => deleteTask(selectedGroupId, task.id)}
+                                                className="!bg-[#19191c] text-white hover:text-black text-sm ml-2"
                                             >
-                        {task.text}
-                      </span>
+                                                Delete
+                                            </button>
                                         </li>
                                     ))}
                             </ul>
@@ -181,11 +203,10 @@ export default function TaskBoard() {
                                 />
                                 <button
                                     onClick={addTaskToGroup}
-                                    className="px-4 py-2 border !bg-[#19191c] rounded hover:bg-neutral-800"
+                                    className="px-4 py-2  !bg-[#19191c] rounded hover:bg-neutral-800"
                                 >
                                     Add
                                 </button>
-
                             </div>
 
                             <div className="flex justify-end mt-4">
