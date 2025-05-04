@@ -1,18 +1,19 @@
-import './App.css'
-import Header from './components/dashboard/Header.tsx'
-import FinancePage from './pages/finance/FinancePage.tsx';
-import CylinderApp from './pages/calendar/CalendarPage.tsx';
-import TeamsPage from './pages/teams/Teams.tsx'
-import ResourcePage from './pages/resources/Resources.tsx';
-function App() {
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import routing components
+import Header from './components/dashboard/Header.tsx';
+import TasksPage from '@/pages/tasks/TasksPage.tsx';
+import FinancePage from '@/pages/finance/FinancePage.tsx';
 
-  return (
-    <>
-      <div>
-        <ResourcePage/>
-      </div>
-    </>
-  )
+function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="" element={<Header />} />
+                <Route path="/tasks" element={<TasksPage />} />
+                <Route path="/finance" element={<FinancePage />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
