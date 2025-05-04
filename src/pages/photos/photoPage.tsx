@@ -21,18 +21,23 @@ export default function PhotoBoard() {
         return [
             {
                 id: 1,
-                imageBase64: "/images/photo1.jpg",
-                caption: "Beach view",
+                imageBase64: "src/assets/one.jpg",
+                caption: "UwinHacks 2025",
             },
             {
                 id: 2,
-                imageBase64: "/images/photo2.jpg",
-                caption: "City skyline",
+                imageBase64: "src/assets/two.jpg",
+                caption: "UwinHacks 2025",
             },
             {
                 id: 3,
-                imageBase64: "/images/photo3.jpg",
-                caption: "Sunset mountain",
+                imageBase64: "src/assets/three.jpg",
+                caption: "UwinHacks 2025",
+            },
+            {
+                id: 4,
+                imageBase64: "src/assets/four.jpg",
+                caption: "UwinHacks 2025",
             },
         ];
     });
