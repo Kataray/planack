@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import Header from './components/dashboard/Header.tsx';
 import TasksPage from '@/pages/tasks/TasksPage.tsx';
 import FinancePage from '@/pages/finance/FinancePage.tsx';
+import PhotoPage from '@/pages/photos/photoPage.tsx';
+import WorkshopPage from '@/pages/workshops/workshopPage.tsx';
 
 import TimelinePage from '@/pages/timeline/Timeline.tsx';
 
@@ -14,6 +16,9 @@ function App() {
                 <Route path="/tasks" element={<TasksPage />} />
                 <Route path="/finance" element={<FinancePage />} />
                 <Route path="/timeline" element={<TimelinePage />} />
+                <Route path="/photos" element={<PhotoPage />} />
+                <Route path="/workshops" element={<WorkshopPage />} />
+
             </Routes>
         </Router>
     );

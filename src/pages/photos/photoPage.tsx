@@ -99,7 +99,7 @@ export default function PhotoBoard() {
                     {[...photos, { id: -1, imageBase64: "", caption: "" }].map((photo) => (
                         <div
                             key={photo.id}
-                            className="w-64 h-64 bg-[#19191c] p-4 rounded-xl shadow-xl text-white flex flex-col justify-between cursor-pointer overflow-hidden"
+                            className="w-80 h-64 bg-[#19191c] p-4 rounded-xl shadow-xl text-white flex flex-col justify-between cursor-pointer overflow-hidden"
                             onClick={() => {
                                 if (photo.id === -1) return;
                                 handlePhotoClick(photo);
